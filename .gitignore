@@ -277,3 +277,4 @@ terraform.tfplan
 infracost.html
 *.env
 .vscode
+media/
