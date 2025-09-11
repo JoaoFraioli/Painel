@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+
+  db:
+    image: postgres:15
+    volumes:
+      - db_volume:/var/lib/postgresql/data/
+    env_file:
+      - dev.env
+    ports:
+      - "5432:5432"
+  
+  app:
+    build:
+      context: ./app
+    volumes:
+      - ./app/:/app
+      - app_volume:/vol/app
+    command: python3 manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    env_file:
+      - dev.env
+    depends_on:
+      - db
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+
+volumes:
+  db_volume:
+  app_volume:

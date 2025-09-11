@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lista de Pessoas</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+	<h2 class="mb-4">Lista de Pessoas</h2>
+	<a href="{% url 'cadastrar_pessoa' %}" class="btn btn-success mb-3">Cadastrar Nova Pessoa</a>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Email</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for pessoa in pessoas %}
+			<tr>
+				<td>{{ pessoa.nome }}</td>
+				<td>{{ pessoa.email }}</td>
+				<td>
+					<!-- Adicione botões de editar/excluir se desejar -->
+				</td>
+			</tr>
+			{% empty %}
+			<tr>
+				<td colspan="3">Nenhuma pessoa cadastrada.</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
